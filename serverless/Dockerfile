@@ -26,5 +26,5 @@ RUN dvc remote add -d model-store s3://mlopsyogi/mlops/
 RUN dvc pull dvcfiles/trained_model.dvc
 RUN ls
 
-RUN chmod -R 0755 $MODEL_DIR
+
 CMD [ "lambda_handler.lambda_handler"]
