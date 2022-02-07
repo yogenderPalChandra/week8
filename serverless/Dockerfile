@@ -22,6 +22,7 @@ RUN dvc remote add -d model-store s3://mlopsyogi/mlops/
 
 # pulling the trained model
 RUN dvc pull dvcfiles/trained_model.dvc
+RUN python lambda_handler.py
 RUN ls
 
 CMD [ "lambda_handler.lambda_handler"]
