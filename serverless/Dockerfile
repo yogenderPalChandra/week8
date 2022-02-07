@@ -16,7 +16,7 @@ COPY . .
 ENV LC_ALL=C.UTF-8
 ENV LANG=C.UTF-8
 RUN pip install "dvc[s3]"
-RUN pip install setuptools==59.5.0
+
 # configuring remote server in dvc
 RUN dvc init --no-scm
 RUN dvc remote add -d model-store s3://mlopsyogi/mlops/
