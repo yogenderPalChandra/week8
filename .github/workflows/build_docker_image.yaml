@@ -36,4 +36,4 @@ jobs:
           docker push 636521895949.dkr.ecr.eu-central-1.amazonaws.com/mlops:v5
 
       - name: Update lambda with image
-        run: aws lambda update-function-code --function-name  MLOps-Basics --image-uri 636521895949.dkr.ecr.eu-central-1.amazonaws.com/mlops:v5
+        run: aws lambda update-function-code --function-name  mlops --image-uri 636521895949.dkr.ecr.eu-central-1.amazonaws.com/mlops:v5
