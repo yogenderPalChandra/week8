@@ -16,6 +16,7 @@ COPY . .
 ENV LC_ALL=C.UTF-8
 ENV LANG=C.UTF-8
 RUN pip install "dvc[s3]"
+RUN pip install setuptools==59.5.0
 # configuring remote server in dvc
 RUN dvc init --no-scm
 RUN dvc remote add -d model-store s3://mlopsyogi/mlops/
@@ -23,6 +24,5 @@ RUN dvc remote add -d model-store s3://mlopsyogi/mlops/
 # pulling the trained model
 RUN dvc pull dvcfiles/trained_model.dvc
 RUN python lambda_handler.py
-RUN ls
 
 CMD [ "lambda_handler.lambda_handler"]

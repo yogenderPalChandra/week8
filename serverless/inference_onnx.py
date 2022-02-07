@@ -3,7 +3,7 @@ import onnxruntime as ort
 from scipy.special import softmax
 
 from data import DataModule
-#from utils import timing
+from utils import timing
 
 
 class ColaONNXPredictor:
@@ -12,7 +12,7 @@ class ColaONNXPredictor:
         self.processor = DataModule()
         self.lables = ["unacceptable", "acceptable"]
 
-    #@timing
+    @timing
     def predict(self, text):
         inference_sample = {"sentence": text}
         processed = self.processor.tokenize_data(inference_sample)
