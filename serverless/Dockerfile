@@ -1,10 +1,10 @@
-FROM public.ecr.aws/lambda/python:3.8
+
+FROM amazon/aws-lambda-python
 
 ARG AWS_ACCESS_KEY_ID
 ARG AWS_SECRET_ACCESS_KEY
-WORKDIR ${LAMBDA_TASK_ROOT}
-COPY app.py ${LAMBDA_TASK_ROOT}
-COPY lambda_handler.py ${LAMBDA_TASK_ROOT}
+ARG MODEL_DIR=./models
+RUN mkdir $MODEL_DIR
 
 ENV TRANSFORMERS_CACHE=$MODEL_DIR \
     TRANSFORMERS_VERBOSITY=error
@@ -16,6 +16,9 @@ RUN yum install git -y && yum -y install gcc-c++
 COPY requirements_inference.txt requirements_inference.txt
 RUN pip install -r requirements_inference.txt --no-cache-dir
 COPY ./ ./
+COPY app.py $MODEL_DIR
+COPY lambda_handler.py $MODEL_DIR
+
 ENV PYTHONPATH "${PYTHONPATH}:./"
 ENV LC_ALL=C.UTF-8
 ENV LANG=C.UTF-8
